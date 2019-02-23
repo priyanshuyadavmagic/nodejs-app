@@ -1,0 +1,70 @@
+pipelines:
+  default:
+    - step:
+        name: Upload Default Bucket
+        services:
+          - docker
+        script:
+          # Test upload
+          - task: atlassian/aws-code-deploy:0.1.0
+            environment:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+              COMMAND: upload
+              APPLICATION_NAME: ggatus-usages
+              ZIP_FILE: myapp.zip
+
+    - step:
+        name: Upload Custom Bucket
+        services:
+        - docker
+        script:
+        # Test upload
+        - task: atlassian/aws-code-deploy:0.1.0
+          environment:
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+            COMMAND: upload
+            ZIP_FILE: myapp.zip
+            APPLICATION_NAME: ggatus-usages
+            S3_BUCKET: ggatus-bbci-bucket
+            VERSION_LABEL: myapp-1.0.0
+    - step:
+        name: Deploy Default
+        services:
+        - docker
+        script:
+        # Test upload
+        - task: atlassian/aws-code-deploy:0.1.0
+          environment:
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+            COMMAND: "deploy"
+            APPLICATION_NAME: "ggatus-usages"
+            DEPLOYMENT_GROUP: "ggatus-usages-group"
+            IGNORE_APPLICATION_STOP_FAILURES: "true"
+            FILE_EXISTS_BEHAVIOR: "OVERWRITE"
+            WAIT: "true"
+    - step:
+        name: Deploy Custom
+        services:
+        - docker
+        script:
+        # Test upload
+        - task: atlassian/aws-code-deploy:0.1.0
+          environment:
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+            COMMAND: deploy
+            APPLICATION_NAME: "ggatus-usages"
+            DEPLOYMENT_GROUP: "ggatus-usages-group"
+            WAIT: "true"
+            S3_BUCKET: "ggatus-bbci-bucket"
+            VERSION_LABEL: "myapp-1.0.0"
+            IGNORE_APPLICATION_STOP_FAILURES: "true"
+            FILE_EXISTS_BEHAVIOR: "OVERWRITE"
+
