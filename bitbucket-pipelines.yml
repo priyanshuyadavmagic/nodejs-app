@@ -65,6 +65,7 @@ pipelines:
             APPLICATION_NAME: 'ggatus-usages'
             DEPLOYMENT_GROUP: 'ggatus-usages-group'
             WAIT: 'true'
+            DEBUG: 'true'
             S3_BUCKET: 'ggatus-bbci-bucket'
             VERSION_LABEL: 'myapp-1.0.0'
             IGNORE_APPLICATION_STOP_FAILURES: 'true'
