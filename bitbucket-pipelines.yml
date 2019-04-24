@@ -5,7 +5,7 @@ pipelines:
     - step:
         name: Build
         script:
-          - zip -r myapp.zip app
+          - cd app && zip -r ../myapp.zip *
         artifacts:
           - myapp.zip
 
@@ -21,7 +21,7 @@ pipelines:
               AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
               AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
               COMMAND: 'upload'
-              APPLICATION_NAME: 'ggatus-usages'
+              APPLICATION_NAME: ${APPLICATION_NAME}
               ZIP_FILE: 'myapp.zip'
 
     - step:
@@ -36,8 +36,8 @@ pipelines:
             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
             AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
             COMMAND: 'deploy'
-            APPLICATION_NAME: 'ggatus-usages'
-            DEPLOYMENT_GROUP: 'ggatus-usages-group'
+            APPLICATION_NAME: ${APPLICATION_NAME}
+            DEPLOYMENT_GROUP: ${DEPLOYMENT_GROUP}
             IGNORE_APPLICATION_STOP_FAILURES: 'true'
             FILE_EXISTS_BEHAVIOR: 'OVERWRITE'
             WAIT: 'true'
