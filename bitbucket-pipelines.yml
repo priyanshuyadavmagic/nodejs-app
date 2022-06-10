@@ -23,6 +23,7 @@ pipelines:
               COMMAND: 'upload'
               APPLICATION_NAME: ${APPLICATION_NAME}
               ZIP_FILE: 'myapp.zip'
+              S3_BUCKET: 'bitbucket-pipeline-to-ec2'
 
     - step:
         name: Deploy with CodeDeploy
@@ -39,6 +40,8 @@ pipelines:
             COMMAND: 'deploy'
             APPLICATION_NAME: ${APPLICATION_NAME}
             DEPLOYMENT_GROUP: ${DEPLOYMENT_GROUP}
+            WAIT: 'true'
+            S3_BUCKET: 'bitbucket-pipeline-to-ec2'
             IGNORE_APPLICATION_STOP_FAILURES: 'true'
             FILE_EXISTS_BEHAVIOR: 'OVERWRITE'
             WAIT: 'true'
