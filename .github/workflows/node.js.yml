@@ -39,7 +39,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'app.zip'
-#         exclusions: '*.git* /*node_modules/* .editorconfig'
+        directory: /app/
+        exclusions: '*.git* /*node_modules/* .editorconfig'
     - run: ls
   
    
