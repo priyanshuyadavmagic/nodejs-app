@@ -42,6 +42,7 @@ jobs:
         directory: app/
         exclusions: '*.git* /*node_modules/* .editorconfig'
     - run: ls
+    - run: pwd
   
    
    
