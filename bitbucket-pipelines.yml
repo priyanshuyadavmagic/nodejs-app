@@ -5,6 +5,9 @@ pipelines:
     - step:
         name: Build
         script:
+          - npm install -g mocha
+          - npm install
+          - npm run test
           - cd app && zip -r ../myapp.zip *
         artifacts:
           - myapp.zip
