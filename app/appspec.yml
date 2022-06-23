@@ -6,9 +6,12 @@ files:
     destination: /opt/apps
 
 hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      runas: root
   ApplicationStart:
     - location: scripts/start.sh
       runas: root
-  ApplicationStop:
-    - location: scripts/stop.sh
-      runas: root
+#   ApplicationStop:
+#     - location: scripts/stop.sh
+#       runas: root
