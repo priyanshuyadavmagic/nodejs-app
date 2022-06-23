@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
-killall -9 node || true
+# killall -9 node || true
 
