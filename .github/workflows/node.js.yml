@@ -50,17 +50,17 @@ jobs:
 
       with:
 
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-access-key-id: ${{ secrets.ACCESSID }}
 
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.SECRETACCESSKEY }}
 
-        aws-region: us-east-1
+        aws-region: ap-south-1
 
         
 
     - name: 'Task 2: Upload  to S3 bucket'
 
-      run: aws s3 cp app.zip s3://githubaction-nodejs-app
+      run: aws s3 cp app.zip s3://nodejs123
    
    
  
